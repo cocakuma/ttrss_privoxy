@@ -13,6 +13,6 @@ RUN apk add --no-cache privoxy && \
 	wget -O /tmp/gfwlist.txt https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt && \
 	gfwlist2privoxy -i /tmp/gfwlist.txt -f /etc/privoxy/gfw.action -p 127.0.0.1:1080 -t socks5 && \
 	rm -f /tmp/gfwlist.txt && \
-	echo "26 03 * * * sh /ttrss_privoxy/update_gfwlist.sh > /var/log/update_gfwlist.log 2>&1" >> /etc/crontab
+	echo "26 03 * * * sh /ttrss_privoxy/update_gfwlist.sh > /var/log/update_gfwlist.log 2>&1" >> /var/spool/cron/crontabs/root
 
 CMD privoxy --no-daemon /ttrss_privoxy/privoxy.conf
